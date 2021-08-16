@@ -121,6 +121,8 @@ class LOTABuilds:
       build['md5'] = md5s.get(build['filename'],'')
     for changelog in changelogs:
       build['changelogUrl'] = changelog['browser_download_url']
+    if not 'changelogUrl' in build:
+      build['changelogUrl'] = release['html_url']
     seed = str(build.get('timestamp',0))+build.get('model','')+build.get('apiLevel','')
     build['uid'] = hashlib.sha256(seed.encode('utf-8')).hexdigest()
     self.__builds.append(build)

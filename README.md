@@ -49,23 +49,25 @@ md5sum lineage-{version}-{timestamp}-UNOFFICIAL-{model}.zip > build.md5sum
 
 ### Structure of the generated json file
 ```json
-[
-    {
-        "incremental": "Identification of the build; ro.build.version.incremental",
-        "api_level": "The api of underlying andorid; ro.build.version.sdk",
-        "url": "Url that points to the release zip file",
-        "timestamp": Timesatmp_of_the_release,
-        "md5sum": "The md5 hash of the release zip file",
-        "changes": "Url that points to the changelog of the rleases",
-        "channel": "The channel this release is built upon; ro.lineage.releasetype",
-        "filename": "Filename of to zip file",
-        "romtype": "The channel this release is built upon; ro.lineage.releasetype",
-        "datetime": Timesatmp_of_the_release,
-        "version": "The version of the lineage release; ro.lineage.build.version",
-        "id": "An unique identifier for this release",
-        "size": The_size_of_the_zip_file
-    }
-]
+{
+    "response": [
+        {
+            "incremental": "Identification of the build; ro.build.version.incremental",
+            "api_level": "The api of underlying andorid; ro.build.version.sdk",
+            "url": "Url that points to the release zip file",
+            "timestamp": Timesatmp_of_the_release,
+            "md5sum": "The md5 hash of the release zip file",
+            "changes": "Url that points to the changelog of the rleases",
+            "channel": "The channel this release is built upon; ro.lineage.releasetype",
+            "filename": "Filename of to zip file",
+            "romtype": "The channel this release is built upon; ro.lineage.releasetype",
+            "datetime": Timesatmp_of_the_release,
+            "version": "The version of the lineage release; ro.lineage.build.version",
+            "id": "An unique identifier for this release",
+            "size": The_size_of_the_zip_file
+        }
+    ]
+}
 ```
 
 ### Possible placeholders
