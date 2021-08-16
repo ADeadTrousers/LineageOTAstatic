@@ -199,35 +199,33 @@ class LOTABuilds:
     self.__prepareOutput()
     models = set([build['model'] for build in self.__builds])
     channels = set([build['channel'] for build in self.__builds])
-    timestamps = sorted(set([build['timestamp'] for build in self.__builds]),reverse=True)
     for model in models:
       for channel in channels:
-        update = {}
-        for timestamp in timestamps:
-          if not update:
-            for build in self.__builds:
-              if not update:
-                if build['model'] == model:
-                  if build['channel'] == channel:
-                    if build['timestamp'] == timestamp:
-                      # CyanogenMod
-                      update['incremental'] = build.get('incremental','')
-                      update['api_level'] = build.get('apiLevel','')
-                      update['url'] = build.get('url','')
-                      update['timestamp'] = build.get('timestamp',0)
-                      update['md5sum'] = build.get('md5','')
-                      update['changes'] = build.get('changelogUrl','')
-                      update['channel'] = channel
-                      update['filename'] = build.get('filename','')
-                      # LineageOS
-                      update['romtype'] = channel
-                      update['datetime'] = build.get('timestamp',0)
-                      update['version'] = build.get('version','')
-                      update['id'] = build.get('uid','')
-                      update['size'] = build.get('size',0)
-        if update:
+        updates = []
+        for build in self.__builds:
+          if build['model'] == model:
+            if build['channel'] == channel:
+              update = {}
+              # CyanogenMod
+              update['incremental'] = build.get('incremental','')
+              update['api_level'] = build.get('apiLevel','')
+              update['url'] = build.get('url','')
+              update['timestamp'] = build.get('timestamp',0)
+              update['md5sum'] = build.get('md5','')
+              update['changes'] = build.get('changelogUrl','')
+              update['channel'] = channel
+              update['filename'] = build.get('filename','')
+              # LineageOS
+              update['romtype'] = channel
+              update['datetime'] = build.get('timestamp',0)
+              update['version'] = build.get('version','')
+              update['id'] = build.get('uid','')
+              update['size'] = build.get('size',0)
+              updates.append(update)
+        if updates:
+          response = { "response" : updates }
           file = open('api/v1/'+model+'_'+channel,'w')
-          json.dump(update,file,indent=4)
+          json.dump(response,file,indent=4)
           file.close()
 # END CLASS LOTABuilds
 
