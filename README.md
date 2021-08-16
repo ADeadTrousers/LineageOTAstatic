@@ -81,3 +81,6 @@ As [Github limited the rate for their api calls](https://docs.github.com/en/deve
 
 ## Extension for other file hosters
 As of now this is a very basic script which only offers Github as the file hosting service. I know there are many others out there in the wild but I neither have the time nor the will to support each and everyone. So if you want it for your own file hoster you need to adapt the script yourself. It's not that complicated and if you think your changes will make a good addition to this project simply create a pull request and I'll look into it.
+
+## Not supported features
+- Incremental updates are basically impossible with this approach as you need to provide a file for every possible combination of all your releases. (At least that's how I would try to accomplish this)
