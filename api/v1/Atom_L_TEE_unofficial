@@ -1,6 +1,21 @@
 {
     "response": [
         {
+            "incremental": "eng.matthi.20221212.202715",
+            "api_level": "30",
+            "url": "https://github.com/ADeadTrousers/android_device_Unihertz_Atom_L_TEE/releases/download/20221212-alpha/lineage-18.1-20221212-UNOFFICIAL-Atom_L_TEE-signed.zip",
+            "timestamp": 1670873177,
+            "md5sum": "918cb2a15a4c8e9b24fafd2347937514",
+            "changes": "https://github.com/ADeadTrousers/android_device_Unihertz_Atom_L_TEE/releases/tag/20221212-alpha",
+            "channel": "unofficial",
+            "filename": "lineage-18.1-20221212-UNOFFICIAL-Atom_L_TEE-signed.zip",
+            "romtype": "unofficial",
+            "datetime": 1670873177,
+            "version": "18.1",
+            "id": "34ce8944210f6e2a1ff5778e1ec1a2b084e2705601f42eba41a555e0fdda011e",
+            "size": 674030621
+        },
+        {
             "incremental": "eng.matthi.20221114.205110",
             "api_level": "30",
             "url": "https://github.com/ADeadTrousers/android_device_Unihertz_Atom_L_TEE/releases/download/20221114-alpha/lineage-18.1-20221114-UNOFFICIAL-Atom_L_TEE-signed.zip",
