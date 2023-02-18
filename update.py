@@ -7,8 +7,10 @@ import time
 import datetime
 import hashlib
 import base64
+import io
 from packaging import version
 from pathvalidate import sanitize_filename
+from tqdm import tqdm
 
 # BEGIN CLASS LOTABuilds
 class LOTABuilds:
@@ -30,6 +32,7 @@ class LOTABuilds:
     else:
       self.__deleteBufferedReleases()
     for repo in repos:
+      print(f'Begin updating "{repo["name"]}"')
       releases = {}
       if self.__buffer:
         releases = self.__loadBufferedReleases(repo['name'])
@@ -40,14 +43,20 @@ class LOTABuilds:
       for release in releases:
         self.__parseGithubBuild(release)
 
+  def __loadStringRequest(self,request):
+    response = urllib.request.urlopen(request)
+    content = io.BytesIO()
+    with tqdm.wrapattr(content, "write", miniters=2, desc=request.full_url.split('/')[-1], total=getattr(response, 'length', None)) as rout:
+      for chunk in response:
+        rout.write(chunk)
+    content.seek(0)
+    return content.read().decode(response.info().get_content_charset('utf-8'))
+
   def __loadGithubReleases(self,repo):
     request = urllib.request.Request('https://api.github.com/repos/'+repo+'/releases')
     request.add_header('user-agent', 'curl/7.68.0')
     request.add_header('Accept', 'application/vnd.github.v3+json')
-    response = urllib.request.urlopen(request)
-    content = response.read()
-    encoding = response.info().get_content_charset('utf-8')
-    return json.loads(content.decode(encoding))
+    return json.loads(self.__loadStringRequest(request))
 
   def __hasBufferdReleases(self):
     if not os.path.isdir('buffer') or not os.listdir('buffer'):
@@ -62,6 +71,7 @@ class LOTABuilds:
     self.__prepareBuffer()
     filename = 'buffer/'+sanitize_filename(repo)+'.json'
     if os.path.isfile(filename):
+      print(f'Loading buffered releases')
       file = open(filename, 'r')
       result = json.loads(file.read())
       file.close()
@@ -70,6 +80,7 @@ class LOTABuilds:
 
   def __saveBufferedReleases(self,repo,releases):
     if releases:
+      print(f'Buffering loaded releases')
       self.__prepareBuffer()
       filename = 'buffer/'+sanitize_filename(repo)+'.json'
       file = open(filename, 'w')
@@ -81,6 +92,7 @@ class LOTABuilds:
       self.__clearFolder('buffer')
 
   def __parseGithubBuild(self,release):
+    print(f'Parsing release "{release["name"]}"')
     archives = []
     props = []
     md5sums = []
@@ -168,11 +180,7 @@ class LOTABuilds:
     return result
 
   def __loadFile(self,url):
-    request = urllib.request.Request(url)
-    response = urllib.request.urlopen(request)
-    content = response.read()
-    encoding = response.info().get_content_charset('utf-8')
-    return content.decode(encoding).splitlines()
+    return self.__loadStringRequest(urllib.request.Request(url)).splitlines()
     
   def __loadProperties(self,url):
     lines = self.__loadFile(url)

@@ -26,6 +26,7 @@ As you are quite obviously already building Lineage OS on your local machine I w
 pip install pyparsing
 pip install packaging
 pip install pathvalidate
+pip install tqdm
 ```
 
 ### Device setup
