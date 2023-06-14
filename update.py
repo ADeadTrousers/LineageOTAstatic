@@ -100,18 +100,17 @@ class LOTABuilds:
     build = {}
     # First split all assets because they are not properly sorted
     for asset in release['assets']:
-      if asset['content_type'] == 'application/zip':
+      extension = os.path.splitext(asset['name'])[1]
+      if extension == '.txt':
+        changelogs.append(asset)
+      elif extension == '.html':
+        changelogs.append(asset)
+      elif extension == '.md5sum':
+        md5sums.append(asset)
+      elif extension == '.prop':
+        props.append(asset)
+      elif extension == '.zip':
         archives.append(asset)
-      else:
-        extension = os.path.splitext(asset['name'])[1]
-        if extension == '.txt':
-          changelogs.append(asset)
-        elif extension == '.html':
-          changelogs.append(asset)
-        elif extension == '.md5sum':
-          md5sums.append(asset)
-        elif extension == '.prop':
-          props.append(asset)
     for archive in archives:
       tokens = self.__parseFilenameFull(archive['name'])
       build['filePath'] = archive['browser_download_url']
