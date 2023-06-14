@@ -1,6 +1,21 @@
 {
     "response": [
         {
+            "incremental": "eng.matthi.20230612.171142",
+            "api_level": "30",
+            "url": "https://github.com/ADeadTrousers/android_device_Unihertz_Atom_XL_EEA/releases/download/20230612-alpha/lineage-18.1-20230612-UNOFFICIAL-Atom_XL_EEA-signed.zip",
+            "timestamp": 1686582651,
+            "md5sum": "0b9bccf454aa70b849549d7f2272e4c2",
+            "changes": "https://github.com/ADeadTrousers/android_device_Unihertz_Atom_XL_EEA/releases/tag/20230612-alpha",
+            "channel": "unofficial",
+            "filename": "lineage-18.1-20230612-UNOFFICIAL-Atom_XL_EEA-signed.zip",
+            "romtype": "unofficial",
+            "datetime": 1686582651,
+            "version": "18.1",
+            "id": "3a442ef95319391c5c1334c5cfd20d6d92c45ff3d59ef100e241e633c04d39dc",
+            "size": 681454944
+        },
+        {
             "incremental": "eng.matthi.20230514.192724",
             "api_level": "30",
             "url": "https://github.com/ADeadTrousers/android_device_Unihertz_Atom_XL_EEA/releases/download/20230514-alpha/lineage-18.1-20230514-UNOFFICIAL-Atom_XL_EEA-signed.zip",
