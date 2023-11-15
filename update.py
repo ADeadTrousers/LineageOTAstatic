@@ -40,8 +40,9 @@ class LOTABuilds:
         releases = self.__loadGithubReleases(repo['name'])
         if self.__buffer:
           self.__saveBufferedReleases(repo['name'],releases)
-      for release in releases:
-        self.__parseGithubBuild(release)
+      if input('Parse releases? [N/Y = default]').lower() != 'n':
+        for release in releases:
+          self.__parseGithubBuild(release)
 
   def __loadStringRequest(self,request):
     response = urllib.request.urlopen(request)
