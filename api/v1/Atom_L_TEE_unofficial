@@ -1,6 +1,21 @@
 {
     "response": [
         {
+            "incremental": "eng.matthi.20240218.195938",
+            "api_level": "30",
+            "url": "https://github.com/ADeadTrousers/android_device_Unihertz_Atom_L_TEE/releases/download/20240218-alpha/lineage-18.1-20240218-UNOFFICIAL-Atom_L_TEE-signed.zip",
+            "timestamp": 1708282720,
+            "md5sum": "50f5f294126c4fb30c409aae18b31def",
+            "changes": "https://github.com/ADeadTrousers/android_device_Unihertz_Atom_L_TEE/releases/tag/20240218-alpha",
+            "channel": "unofficial",
+            "filename": "lineage-18.1-20240218-UNOFFICIAL-Atom_L_TEE-signed.zip",
+            "romtype": "unofficial",
+            "datetime": 1708282720,
+            "version": "18.1",
+            "id": "6e9d7a892408722cfb9ea3a360404419683f1733f848a32ee86021caca656ca1",
+            "size": 673791303
+        },
+        {
             "incremental": "eng.matthi.20240119.203040",
             "api_level": "30",
             "url": "https://github.com/ADeadTrousers/android_device_Unihertz_Atom_L_TEE/releases/download/20240119-alpha/lineage-18.1-20240119-UNOFFICIAL-Atom_L_TEE-signed.zip",
@@ -434,21 +449,6 @@
             "version": "17.1",
             "id": "77544aa83e4312d3eb7e74c9e84105215c773913d7f1cccbdf277dc1eddc19c6",
             "size": 604232338
-        },
-        {
-            "incremental": "eng.matthi.20210714.180925",
-            "api_level": "29",
-            "url": "https://github.com/ADeadTrousers/android_device_Unihertz_Atom_L_TEE/releases/download/20210714-alpha/lineage-17.1-20210714-UNOFFICIAL-Atom_L_TEE-signed.zip",
-            "timestamp": 1626278924,
-            "md5sum": "79aef8c980c6e600be4cbaa962c1213b",
-            "changes": "https://github.com/ADeadTrousers/android_device_Unihertz_Atom_L_TEE/releases/tag/20210714-alpha",
-            "channel": "unofficial",
-            "filename": "lineage-17.1-20210714-UNOFFICIAL-Atom_L_TEE-signed.zip",
-            "romtype": "unofficial",
-            "datetime": 1626278924,
-            "version": "17.1",
-            "id": "c16d1dadafa805a2b0e495afbbee40ebc9a541027cc5036eab7a0b512ee8639f",
-            "size": 604220722
         }
     ]
 }
