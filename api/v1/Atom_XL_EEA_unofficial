@@ -1,6 +1,21 @@
 {
     "response": [
         {
+            "incremental": "eng.matthi.20240718.160711",
+            "api_level": "32",
+            "url": "https://github.com/ADeadTrousers/android_device_Unihertz_Atom_XL_EEA/releases/download/20240718-alpha/lineage-19.1-20240718-UNOFFICIAL-Atom_XL_EEA-signed.zip",
+            "timestamp": 1721311570,
+            "md5sum": "e51544b67366225c5476314469c89f78",
+            "changes": "https://github.com/ADeadTrousers/android_device_Unihertz_Atom_XL_EEA/releases/tag/20240718-alpha",
+            "channel": "unofficial",
+            "filename": "lineage-19.1-20240718-UNOFFICIAL-Atom_XL_EEA-signed.zip",
+            "romtype": "unofficial",
+            "datetime": 1721311570,
+            "version": "19.1",
+            "id": "6aa37cbb9753d255e3f7cb8f4f427ef74ee26218fdfcae728035746b3021716b",
+            "size": 783237125
+        },
+        {
             "incremental": "eng.matthi.20240621.203236",
             "api_level": "32",
             "url": "https://github.com/ADeadTrousers/android_device_Unihertz_Atom_XL_EEA/releases/download/20240621-alpha/lineage-19.1-20240621-UNOFFICIAL-Atom_XL_EEA-signed.zip",
@@ -434,21 +449,6 @@
             "version": "17.1",
             "id": "e5cb7320929a3aa7fca8cfb7e4573effcdc80adb18c0de5a48d4ef4133931e3f",
             "size": 616110633
-        },
-        {
-            "incremental": "eng.matthi.20210916.211625",
-            "api_level": "29",
-            "url": "https://github.com/ADeadTrousers/android_device_Unihertz_Atom_XL_EEA/releases/download/20210916-alpha/lineage-17.1-20210916-UNOFFICIAL-Atom_XL_EEA-signed.zip",
-            "timestamp": 1631819749,
-            "md5sum": "1565b91635ec72c003b2d33b4aa66c63",
-            "changes": "https://github.com/ADeadTrousers/android_device_Unihertz_Atom_XL_EEA/releases/tag/20210916-alpha",
-            "channel": "unofficial",
-            "filename": "lineage-17.1-20210916-UNOFFICIAL-Atom_XL_EEA-signed.zip",
-            "romtype": "unofficial",
-            "datetime": 1631819749,
-            "version": "17.1",
-            "id": "4832d43ca0c1b2a02058f73ad0111ba1e3dc00a967ef457fb98e3a68077c05df",
-            "size": 608038184
         }
     ]
 }
