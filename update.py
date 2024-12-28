@@ -18,7 +18,7 @@ class LOTABuilds:
   def __init__(self,buffer = False):
     self.__builds = []
     self.__buffer = buffer
-    
+
   def loadGithub(self):
     if not os.path.isfile('github.json'):
       print('No config present')
@@ -93,51 +93,54 @@ class LOTABuilds:
       self.__clearFolder('buffer')
 
   def __parseGithubBuild(self,release):
-    print(f'Parsing release "{release["name"]}"')
-    archives = []
-    props = []
-    md5sums = []
-    changelogs = []
-    build = {}
-    # First split all assets because they are not properly sorted
-    for asset in release['assets']:
-      extension = os.path.splitext(asset['name'])[1]
-      if extension == '.txt':
-        changelogs.append(asset)
-      elif extension == '.html':
-        changelogs.append(asset)
-      elif extension == '.md5sum':
-        md5sums.append(asset)
-      elif extension == '.prop':
-        props.append(asset)
-      elif extension == '.zip':
-        archives.append(asset)
-    for archive in archives:
-      tokens = self.__parseFilenameFull(archive['name'])
-      build['filePath'] = archive['browser_download_url']
-      build['url'] = archive['browser_download_url']
-      build['channel'] = self.__getChannel(re.sub('/[0-9]/','',tokens[3]), tokens[0], tokens[1])
-      build['filename'] = archive['name']
-      build['timestamp'] = int(time.mktime(datetime.datetime.strptime(archive['updated_at'],'%Y-%m-%dT%H:%M:%SZ').timetuple()))
-      build['model'] = tokens[5] if tokens[1] == 'cm' else tokens[4]
-      build['version'] = tokens[1]
-      build['size'] = archive['size']
-    for prop in props:
-      properties = self.__loadProperties(prop['browser_download_url'])
-      build['timestamp'] = int(properties.get('ro.build.date.utc',build['timestamp']))
-      build['incremental'] = properties.get('ro.build.version.incremental','')
-      build['apiLevel'] = properties.get('ro.build.version.sdk','')
-      build['model'] = properties.get('ro.lineage.device',properties.get('ro.cm.device',build['model']))
-    for md5sum in md5sums:
-      md5s = self.__loadMd5sums(md5sum['browser_download_url'])
-      build['md5'] = md5s.get(build['filename'],'')
-    for changelog in changelogs:
-      build['changelogUrl'] = changelog['browser_download_url']
-    if not 'changelogUrl' in build:
-      build['changelogUrl'] = release['html_url']
-    seed = str(build.get('timestamp',0))+build.get('model','')+build.get('apiLevel','')
-    build['uid'] = hashlib.sha256(seed.encode('utf-8')).hexdigest()
-    self.__builds.append(build)
+    try:
+      print(f'Parsing release "{release["name"]}"')
+      archives = []
+      props = []
+      md5sums = []
+      changelogs = []
+      build = {}
+      # First split all assets because they are not properly sorted
+      for asset in release['assets']:
+        extension = os.path.splitext(asset['name'])[1]
+        if extension == '.txt':
+          changelogs.append(asset)
+        elif extension == '.html':
+          changelogs.append(asset)
+        elif extension == '.md5sum':
+          md5sums.append(asset)
+        elif extension == '.prop':
+          props.append(asset)
+        elif extension == '.zip':
+          archives.append(asset)
+      for archive in archives:
+        tokens = self.__parseFilenameFull(archive['name'])
+        build['filePath'] = archive['browser_download_url']
+        build['url'] = archive['browser_download_url']
+        build['channel'] = self.__getChannel(re.sub('/[0-9]/','',tokens[3]), tokens[0], tokens[1])
+        build['filename'] = archive['name']
+        build['timestamp'] = int(time.mktime(datetime.datetime.strptime(archive['updated_at'],'%Y-%m-%dT%H:%M:%SZ').timetuple()))
+        build['model'] = tokens[5] if tokens[1] == 'cm' else tokens[4]
+        build['version'] = tokens[1]
+        build['size'] = archive['size']
+      for prop in props:
+        properties = self.__loadProperties(prop['browser_download_url'])
+        build['timestamp'] = int(properties.get('ro.build.date.utc',build['timestamp']))
+        build['incremental'] = properties.get('ro.build.version.incremental','')
+        build['apiLevel'] = properties.get('ro.build.version.sdk','')
+        build['model'] = properties.get('ro.lineage.device',properties.get('ro.cm.device',build['model']))
+      for md5sum in md5sums:
+        md5s = self.__loadMd5sums(md5sum['browser_download_url'])
+        build['md5'] = md5s.get(build['filename'],'')
+      for changelog in changelogs:
+        build['changelogUrl'] = changelog['browser_download_url']
+      if not 'changelogUrl' in build:
+        build['changelogUrl'] = release['html_url']
+      seed = str(build.get('timestamp',0))+build.get('model','')+build.get('apiLevel','')
+      build['uid'] = hashlib.sha256(seed.encode('utf-8')).hexdigest()
+      self.__builds.append(build)
+    except Exception as error:
+      print(error)
 
   def __parseFilenameFull(self,fileName):
     #  tokens Schema:
@@ -203,7 +206,8 @@ class LOTABuilds:
       os.mkdir('api')
     if not os.path.isdir('api/v1'):
       os.mkdir('api/v1')
-    self.__clearFolder('api/v1')
+    if input('Clear output folder? [Y/N = default]').lower() == 'y':
+      self.__clearFolder('api/v1')
 
   def writeApiFiles(self):
     self.__prepareOutput()
